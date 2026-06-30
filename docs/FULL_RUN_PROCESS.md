@@ -204,7 +204,7 @@ Key findings reproduced:
         │
         ▼
 ┌─────────────────────────────┐
-│  Stage 2: Hybrid Relevance   │  BM25 (33%) + Semantic (42%) + Co-occurrence (25%)
+│  Stage 2: Hybrid Relevance   │  BM25 (23%) + Cross-Encoder (50%) + Co-occurrence (27%)
 │  Corpus-wide Okapi BM25      │  Contextual verb+keyword proximity boosts
 │  Precomputed MiniLM scores   │
 └─────────────────────────────┘

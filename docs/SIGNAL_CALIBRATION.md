@@ -58,7 +58,7 @@ While the GBDT LambdaMART ranker (`--use-learned-combiner`) integrates multi-sig
 
 ## Relevance blend (Stage 2)
 
-**BM25 0.28 / Cross-Encoder 0.47 / Co-occurrence 0.25**
+**BM25 0.23 / Cross-Encoder 0.50 / Co-occurrence 0.27**
 
 Variance share across survivors: BM25 35.3%, cross-encoder 6.9%, co-occurrence 57.8%.
 Cross-Encoder is overweighted because it is the direct JD cross-encoder match;
