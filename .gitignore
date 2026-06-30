@@ -37,3 +37,8 @@ Thumbs.db
 venv/
 .venv/
 env/
+
+# Scratch & Raw Distribution folder
+final_check.py
+[PUB] India_runs_data_and_ai_challenge/
+
