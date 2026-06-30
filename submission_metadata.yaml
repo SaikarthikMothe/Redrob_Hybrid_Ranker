@@ -1,0 +1,64 @@
+# Redrob Hackathon - Submission Metadata
+
+team_name: "team_Jarvis"
+
+primary_contact:
+  name: "Sai Karthik"
+  email: "iit2023056@iiita.ac.in"
+  phone: "+91-6305767701"
+
+team_members:
+  - name: "Sai Karthik"
+    email: "iit2023056@iiita.ac.in"
+    
+  - name: "Siddartha Yarkala"
+    email: "iec2023039@iiita.ac.in"
+  
+
+  - name: "Abhiram Gajula"
+    email: "iib2023016@iiita.ac.in"
+    
+
+github_repo: "https://github.com/SaiKarthikMothe/Redrob_Hybrid_Ranker"
+sandbox_link: "https://colab.research.google.com/github/SaiKarthikMothe/Redrob_Hybrid_Ranker/blob/main/sandbox.ipynb"
+reproduce_command: "python rank_candidates.py --out team_Jarvis.csv"
+
+compute:
+  platform: "Local CPU machine"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.11"
+  os: "Windows"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: true
+  pre_computation_time_minutes: 3
+
+ai_tools_used:
+  - "ChatGPT"
+  - "Claude"
+  - "Gemini"
+
+ai_usage_summary: |
+  Used AI assistance for code review, validation, and submission-readiness checks.
+  The ranking step itself is a local CPU-only Python script and does not call hosted
+  LLMs or external APIs.
+
+methodology_summary: |
+  A pure Heuristic hybrid ranker that blends semantic cross-encoder matching (50% weight),
+  BM25 lexical retrieval (23% weight), and career history co-occurrence (27% weight),
+  calibrated with behavioral multipliers (activity decay, recruiter response/time,
+  interview completion, notice days, and skill trust). This approach avoids GBDT circularity
+  (since there are no human placement labels, GBDT only approximates the rules) and
+  avoids GBDT lexical dominance (where trees greedily split on BM25 and ignore semantic
+  scores, dropping semantic correlation in the shortlist from 0.49 to 0.35). The pipeline
+  first filters profiles via hard gates (experience, relocation, blacklist, work mode)
+  and then scores survivors. An optional GBDT LambdaMART ranker is also trained and
+  fully supported (`--use-learned-combiner`). The default run completes locally in under 2 seconds.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true

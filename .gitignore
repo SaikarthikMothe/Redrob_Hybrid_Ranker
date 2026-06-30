@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.eggs/
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Large dataset file (464 MB - use Git LFS or exclude from push)
+# The ranker uses data/candidates.jsonl at inference time.
+# Stage 3 judges will have their own copy. Exclude to avoid push failure.
+data/candidates.jsonl
+
+# Model weights — large binary files, managed via Git LFS
+# Uncomment the lines below if NOT using Git LFS and you want to exclude them.
+# If using Git LFS, these are tracked automatically via .gitattributes.
+# models/all-MiniLM-L6-v2/model.safetensors
+# models/ms-marco-MiniLM-L-12-v2/model.safetensors
+# models/ms-marco-MiniLM-L-6-v2/model.safetensors
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Env
+.env
+venv/
+.venv/
+env/
