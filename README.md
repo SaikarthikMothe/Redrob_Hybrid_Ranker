@@ -6,7 +6,7 @@ the Redrob Intelligent Candidate Discovery & Ranking Challenge.
 ## Files
 
 - `rank_candidates.py` generates the submission CSV.
-- `team_Jarvis.csv` is the generated and validator-passing submission file.
+- `team_204.csv` is the generated and validator-passing submission file.
 - `validate_submission.py` is the official CSV format validator.
 - `signal_calibration.py` holds empirically tuned multiplier constants (see below).
 - `analyze_signals.py` reproduces correlation/distribution analysis on the surviving pool.
@@ -20,8 +20,8 @@ the Redrob Intelligent Candidate Discovery & Ranking Challenge.
 
 To reproduce our official submission using the pure Heuristic ranker (which avoids GBDT circularity and BM25 lexical dominance, and is our primary submitted system):
 ```bash
-python rank_candidates.py --out team_Jarvis.csv
-python validate_submission.py team_Jarvis.csv
+python rank_candidates.py --out team_204.csv
+python validate_submission.py team_204.csv
 python analyze_signals.py   # reproduce empirical calibration stats
 ```
 
@@ -29,8 +29,8 @@ python analyze_signals.py   # reproduce empirical calibration stats
 
 The pipeline also supports the machine-learned GBDT ranker trained on heuristic targets (distilled rules):
 ```bash
-python rank_candidates.py --use-learned-combiner --out team_Jarvis.csv
-python validate_submission.py team_Jarvis.csv
+python rank_candidates.py --use-learned-combiner --out team_204.csv
+python validate_submission.py team_204.csv
 python analyze_signals.py   # reproduce empirical calibration stats
 ```
 
@@ -81,7 +81,7 @@ graph TD
     G --> H[Stage 4: Shortlisting & Deterministic Tie-Breaking]
     H -->|Alphanumeric CAND_ID Tie Break| I[Output Shortlist: Top 100 Candidates]
     I --> J[CSV Writer & Explainable Reasoning Generator]
-    J --> K[Final Output: team_Jarvis.csv]
+    J --> K[Final Output: team_204.csv]
 ```
 
 ### Pipeline Details:

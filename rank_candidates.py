@@ -12,7 +12,7 @@ import numpy as np
 # ============================================================================
 # 0. GLOBAL SUBMISSION CONFIGURATIONS
 # ============================================================================
-PARTICIPANT_ID = "team_Jarvis"  # Matches participant ID exactly
+PARTICIPANT_ID = "team_204"  # Matches participant ID exactly
 OUTPUT_SUBMISSION = f"{PARTICIPANT_ID}.csv"
 
 try:
