@@ -88,19 +88,19 @@ graph TD
 
 1. **Stage 1 (Boolean Hard Gates):** Instantly discards non-fits based on strict constraints (Years of Experience between 4 and 13, onsite preference or willingness to relocate to Pune/Noida, non-technical title exclusions, completeness score $\ge 50\%$, and blacklist checks).
 2. **Stage 2 (Hybrid Scoring Engine):**
-   * **Okapi BM25:** Computes lexical scores against target JD keywords using corpus-wide statistics.
-   * **Contextual Proximity Matcher:** Awards high-gradient boosts if target skills are written in the same sentence as senior action verbs (*"built"*, *"scaled"*, *"optimized"*).
-   * **Headline-aware Matching:** Pulls profile headlines into the text-match path so explicit stack keywords can influence BM25 and semantic scoring.
-   * **Optional MiniLM Semantic Scoring:** Blends CPU sentence-transformer cosine similarity against the JD anchor when a local model is prepared.
+   * **Okapi BM25 (23% Weight):** Computes lexical relevance scores against target JD keywords using corpus-wide statistics.
+   * **Cross-Encoder L-12 Semantic Scoring (50% Weight):** The dominant semantic signal. Uses a local `ms-marco-MiniLM-L-12-v2` transformer model to compute deep contextual relevance (falls back to a lexical/breadth-only mixture if the model weights are unavailable).
+   * **Career History Co-Occurrence (27% Weight):** Awards structured co-occurrence relevance based on historical role titles and action verbs (*"built"*, *"scaled"*, *"optimized"*) matching the candidate's career progression.
+   * **Headline-aware matching:** Ingests candidate profile headlines directly into the lexical and semantic paths to let explicit stack alignment guide the score.
 3. **Stage 3 (Behavioral Modifiers & Honeypot Check):**
-   * Applies activity decay (sigmoid centred on p50 inactivity = 88 days), recruiter response rates, recruiter response time, intent signals, recruiter-market validation, company-scale progression, and assessment-first skill trust blended with experience and endorsements.
-   * All multiplier thresholds and coefficients are empirically calibrated — see `docs/SIGNAL_CALIBRATION.md` and `signal_calibration.py`.
-   * GitHub activity uses a minimal ±3% band (not a linear boost): dataset analysis shows r(ICR, GitHub) = +0.06, so it is treated as a code-artifact nudge, not an outcome predictor.
-   * Contact verification penalises **both** unverified channels only (6.8% of pool); an OR-penalty would hit 46% and was rejected.
-   * Defensively catches honeypots (Expert skills with 0 months experience) and applies a severe `0.001` multiplier, completely dropping them from the shortlisted ranks.
-4. **Stage 4 (Shortlist & Explainability):**
-   * Sorts candidates and breaks ties deterministically using alphanumeric candidate IDs.
-   * Generates factual, hallucination-free, candidate-specific reasoning notes based on resume metadata.
+   * **Heuristic Multiplier Stack:** Applies activity decay (sigmoid centered on median inactivity of 88 days), recruiter response rates, recruiter response time, operational interview completion rate, GitHub activity band, verified contact verification, low offer acceptance rate penalties, and an assessment-first skill trust matrix.
+   * **Industry Origin Calibrations:** Rewards current product-company experience with a `1.05` boost, while penalizing consulting-only career backgrounds with a `0.90` penalty (unless mitigated by high skill-trust assessment signals).
+   * **Feature Extraction for GBDT:** Retains intent volume, profile views/saves (market validation), and company scale delta progression as features exclusively reserved for the machine-learned GBDT ranker (pruned from the heuristic multiplier path to prevent proxy bias).
+   * **Anti-Honeypot Trap Matrix:** Defensively catches honeypots (Expert skills with 0 months experience) and applies a severe `0.001` multiplier, completely dropping them from the shortlisted ranks.
+4. **Stage 4 (Shortlist, GBDT Re-ranking & Explainability):**
+   * **Dual Ranking Paths:** The default heuristic path ranks candidates directly. The alternative `--use-learned-combiner` path uses a trained LightGBM LambdaMART ranking booster to combine all 15 lexical, semantic, and behavioral features to re-rank the survivors.
+   * **Deterministic Sorting & Normalization:** Normalizes final scores to the `[0, 1]` range (min-max mapping with monotonic descending clamps) so Rank 1 = 1.0. Resolves any score ties deterministically using alphanumeric candidate ID ascending.
+   * **Explainable Shortlist:** Generates factual, hallucination-free, candidate-specific reasoning notes based on resume metadata.
 
 ---
 
