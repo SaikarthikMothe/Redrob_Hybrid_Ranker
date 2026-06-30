@@ -1,4 +1,4 @@
 sentence-transformers==5.6.0
-torch==2.7.1+cpu
+torch>=2.0.0
 numpy==2.2.3
 lightgbm==4.6.0
