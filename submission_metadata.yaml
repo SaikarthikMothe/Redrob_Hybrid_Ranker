@@ -21,7 +21,7 @@ team_members:
 
 github_repo: "https://github.com/SaiKarthikMothe/Redrob_Hybrid_Ranker"
 sandbox_link: "https://colab.research.google.com/github/SaiKarthikMothe/Redrob_Hybrid_Ranker/blob/main/sandbox.ipynb"
-reproduce_command: "python rank_candidates.py --out team_Jarvis.csv"
+reproduce_command: "python rank_candidates.py --out team_Jarvis2.0.csv"
 
 compute:
   platform: "Local CPU machine"

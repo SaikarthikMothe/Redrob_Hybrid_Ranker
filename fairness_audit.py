@@ -14,7 +14,7 @@ from signal_calibration import (
     CONSULTING_ONLY_PENALTY
 )
 
-SUBMISSION_PATH = "team_Jarvis.csv"
+SUBMISSION_PATH = "team_Jarvis2.0.csv"
 CANDIDATES_PATH = os.path.join("data", "candidates.jsonl")
 
 def run_audit():
