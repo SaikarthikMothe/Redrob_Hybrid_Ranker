@@ -94,7 +94,7 @@ def bullet(doc, text, level=0, color=TEXT):
     return p
 
 def main():
-    with open("team_204.csv", encoding="utf-8-sig", newline="") as f:
+    with open("team_Jarvis.csv", encoding="utf-8-sig", newline="") as f:
         submission_rows = list(csv.DictReader(f))
     reasonings = [row["reasoning"] for row in submission_rows]
     minimum_reasoning_length = min(len(text) for text in reasonings)

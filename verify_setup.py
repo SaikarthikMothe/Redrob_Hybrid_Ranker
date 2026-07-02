@@ -15,7 +15,7 @@ MODEL_WEIGHTS = MODEL_DIR / "model.safetensors"
 FULL_CANDIDATES = ROOT / "data" / "candidates.jsonl"
 SAMPLE_CANDIDATES = ROOT / "data" / "sample_candidates.jsonl"
 SEMANTIC_SCORES = ROOT / "data" / "semantic_scores.json.gz"
-SUBMISSION = ROOT / "team_204.csv"
+SUBMISSION = ROOT / "team_Jarvis.csv"
 
 
 def count_survivors(path):

@@ -1,6 +1,6 @@
 # Redrob Hybrid Ranker — Full Run Process
 
-**Team:** `team_204`  
+**Team:** `team_Jarvis`  
 **Last verified run:** 2026-06-17  
 **Environment:** Windows 10, Python 3.x, CPU-only (no GPU, no network calls at runtime)
 
@@ -26,7 +26,7 @@ This document records the end-to-end procedure to reproduce the submission from 
 | `audit_submission.py` | Internal reasoning-quality audit |
 | `verify_setup.py` | Prerequisite checker |
 | `analyze_signals.py` | Signal distribution / correlation reproduction |
-| `team_204.csv` | Final submission output |
+| `team_Jarvis.csv` | Final submission output |
 
 ---
 
@@ -64,7 +64,7 @@ Redrob Hybrid Ranker setup verification
   [OK] sample candidate dataset: 2969 records, 100 Stage 1 survivors
   [OK] Embedding model loads successfully (dimension=384).
   [OK] Precomputed semantic scores present (679 entries).
-  [OK] Submission file present: team_204.csv
+  [OK] Submission file present: team_Jarvis.csv
 
 All technical prerequisites are satisfied.
 ```
@@ -76,7 +76,7 @@ All technical prerequisites are satisfied.
 ### Step 2 — Run Ranking Pipeline (Official Dataset)
 
 ```bash
-python rank_candidates.py --out team_204.csv
+python rank_candidates.py --out team_Jarvis.csv
 ```
 
 This is the **default semantic run**. It loads precomputed scores from `data/semantic_scores.json.gz` and completes in ~30 seconds on CPU.
@@ -100,7 +100,7 @@ This is the **default semantic run**. It loads precomputed scores from `data/sem
  Flagged Honeypot Traps Contained      : 0 / 100
   STATUS: Safety threshold verified. Sandbox validation PASSED.
 ====================================================================
-SUCCESS: Pipeline iteration completed cleanly. Data target established at: team_204.csv
+SUCCESS: Pipeline iteration completed cleanly. Data target established at: team_Jarvis.csv
 ```
 
 **Exit code:** `0`  
@@ -111,7 +111,7 @@ SUCCESS: Pipeline iteration completed cleanly. Data target established at: team_
 ### Step 3 — Official Format Validation
 
 ```bash
-python validate_submission.py team_204.csv
+python validate_submission.py team_Jarvis.csv
 ```
 
 **Expected output:** `Submission is valid.`  
@@ -223,7 +223,7 @@ Key findings reproduced:
 └─────────────────────────────┘
         │
         ▼
-   team_204.csv
+   team_Jarvis.csv
 ```
 
 ---
@@ -262,8 +262,8 @@ Each `reasoning` cell has two parts:
 | # | Step | Command | Pass criterion |
 |---|---|---|---|
 | 1 | Verify prerequisites | `python verify_setup.py` | Exit 0, all `[OK]` |
-| 2 | Generate submission | `python rank_candidates.py --out team_204.csv` | 100 rows, 0 honeypots in shortlist |
-| 3 | Official validation | `python validate_submission.py team_204.csv` | `Submission is valid.` |
+| 2 | Generate submission | `python rank_candidates.py --out team_Jarvis.csv` | 100 rows, 0 honeypots in shortlist |
+| 3 | Official validation | `python validate_submission.py team_Jarvis.csv` | `Submission is valid.` |
 | 4 | Internal audit | `python audit_submission.py` | `SUBMISSION STATUS: READY` |
 | 5 | Opener diversity | `python check_openers.py` | 100 unique openers |
 | 6 | Sample demo (optional) | `python rank_candidates.py --candidates data/sample_candidates.jsonl --out sample_submission.csv` | 100 in → 100 out |
@@ -292,7 +292,7 @@ Each `reasoning` cell has two parts:
 
 After a successful full run, these files are ready for portal upload:
 
-1. `team_204.csv` — ranked shortlist with reasoning
+1. `team_Jarvis.csv` — ranked shortlist with reasoning
 2. `submission_metadata.yaml` — team metadata and methodology summary
 3. `docs/SIGNAL_CALIBRATION.md` — judge-facing calibration report (reference only)
 

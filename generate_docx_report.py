@@ -106,7 +106,7 @@ def create_report():
     
     bullet_style = 'List Bullet'
     doc.add_paragraph("CPU-Only Offline Host: No network calls, API access, or GPU dependencies are permitted at runtime. Inference must run strictly locally.", style=bullet_style)
-    doc.add_paragraph("Strict CSV Schema Format: The final output must be exactly team_204.csv with columns: candidate_id, rank, score, reasoning.", style=bullet_style)
+    doc.add_paragraph("Strict CSV Schema Format: The final output must be exactly team_Jarvis.csv with columns: candidate_id, rank, score, reasoning.", style=bullet_style)
     doc.add_paragraph("Monotonicity Enforcements: Scores must be non-negative floats, strictly non-increasing by rank, and properly formatted in a sensible range (normalized [0, 1]).", style=bullet_style)
     doc.add_paragraph("Deterministic Tie-Breaking: Equal scores must be resolved alphabetically ascending by candidate_id to prevent rank-shuffling.", style=bullet_style)
     doc.add_paragraph("Safety & Honeypot Trap Thresholds: Detect and penalize honeypot profiles (candidates claiming 'Expert' proficiency in skills with 0 months of duration). Flagged honeypots must be under 10% (ideally 0%) in the final shortlist.", style=bullet_style)
@@ -255,7 +255,7 @@ def create_report():
     
     p = doc.add_paragraph()
     p.add_run("The generated submission payload (")
-    p.add_run("team_204.csv").bold = True
+    p.add_run("team_Jarvis.csv").bold = True
     p.add_run(") has been rigorously audited and passes all checks:")
     
     doc.add_paragraph("Official Format Validator: PASSED (Submission is valid. Monotonicity and deterministic alphanumeric tie-breaking verified).", style=bullet_style)
@@ -298,11 +298,11 @@ def create_report():
         ("train_learned_combiner.py", "Trained combiner script. Extracts 15 behavioral and semantic features for survivors and trains a LightGBM LambdaRank booster (objective='lambdarank') using calibrated continuous targets (grades mapped to [0, 30] integers)."),
         ("generate_crossencoder_scores.py", "Computes and gzips semantic scores for all Stage 1 survivors locally on CPU using the upgraded cross-encoder/ms-marco-MiniLM-L-12-v2 model against the JD semantic query anchor."),
         ("analyze_signals.py", "Runs statistical analysis (distributions, Pearson correlations, disengagement bands) over the surviving candidate pool, outputting the docs/SIGNAL_CALIBRATION.md report containing the GBDT ranker circularity limits notes."),
-        ("validate_submission.py", "The official validation script. Confirms that the final team_204.csv submission matches column headers, has exactly 100 rows, uses non-negative monotonic scores, and breaks ties alphabetically."),
+        ("validate_submission.py", "The official validation script. Confirms that the final team_Jarvis.csv submission matches column headers, has exactly 100 rows, uses non-negative monotonic scores, and breaks ties alphabetically."),
         ("audit_submission.py", "Internal reasoning auditor. Validates that reasonings have sufficient length, do not contain honeypot keywords, do not repeat structural openers, and checks that assessment, GitHub, and response time metrics are always mentioned."),
         ("verify_setup.py", "Technical checker verifying that all candidate datasets, model weight caches, precomputed similarity payloads, and final CSV submission files are present and correct."),
         ("learned_model.txt", "Trained LightGBM GBDT booster binary containing decision trees and splitting rules used during Stage 4 combinatorics scoring."),
-        ("team_204.csv", "The official finalized submission file. Contains the top 100 candidates ranked, their min-max scaled scores, and gap-free explainability reasoning strings."),
+        ("team_Jarvis.csv", "The official finalized submission file. Contains the top 100 candidates ranked, their min-max scaled scores, and gap-free explainability reasoning strings."),
         ("data/candidates.jsonl", "Core candidate repository containing profile metadata and behavioral signal logs for 100,000+ engineers."),
         ("data/sample_candidates.jsonl", " light verification dataset (2,969 candidates) designed so that exactly 100 candidates pass the Boolean gates to test formatting and reproduction scripts."),
         ("data/crossencoder_scores.json.gz", "Gzipped JSON payload storing the precomputed L-12 Cross-Encoder semantic similarity scores for all 679 survivors."),

@@ -220,7 +220,7 @@ def create_report():
     sub_p.paragraph_format.space_after = Pt(2)
 
     meta_p = doc.add_paragraph()
-    meta_r = meta_p.add_run("Team 204  |  Submission: team_204.csv  |  Status: READY ✓")
+    meta_r = meta_p.add_run("Team Jarvis  |  Submission: team_Jarvis.csv  |  Status: READY ✓")
     meta_r.font.name = 'Calibri'
     meta_r.font.size = Pt(10)
     meta_r.font.color.rgb = SECONDARY
@@ -431,14 +431,14 @@ def create_report():
 
     doc.add_paragraph()
     h2(doc, "5.2  Submission Validation")
-    body(doc, "Results of running validate_submission.py and audit_submission.py on team_204.csv:")
+    body(doc, "Results of running validate_submission.py and audit_submission.py on team_Jarvis.csv:")
 
     vtbl2 = doc.add_table(rows=1, cols=3)
     vtbl2.style = 'Table Grid'
     table_header_row(vtbl2, ["Check", "Result", "Detail"], [2.5, 1.2, 3.0])
     opener_leads = set()
-    if os.path.exists("team_204.csv"):
-        with open("team_204.csv", encoding="utf-8-sig", newline="") as f:
+    if os.path.exists("team_Jarvis.csv"):
+        with open("team_Jarvis.csv", encoding="utf-8-sig", newline="") as f:
             for row in csv.DictReader(f):
                 reasoning = row.get("reasoning", "").strip()
                 if reasoning:
@@ -468,7 +468,7 @@ def create_report():
         "JD keyword presence.")
 
     # Load actual top-10 from CSV
-    csv_path = "team_204.csv"
+    csv_path = "team_Jarvis.csv"
     top10_rows = []
     if os.path.exists(csv_path):
         with open(csv_path, encoding='utf-8') as f:
@@ -563,7 +563,7 @@ def create_report():
          "metric regex, tighter verbs, recency multiplier"),
         ("data/crossencoder_scores.json.gz", "REGENERATED",
          "Re-scored all 884 Stage 1 survivors with new JD anchor using ms-marco-MiniLM-L-12-v2"),
-        ("team_204.csv",               "REGENERATED",
+        ("team_Jarvis.csv",               "REGENERATED",
          f"Final submission; 100 rows; SHA-256: {csv_sha256[:8]}...{csv_sha256[-8:]}"),
     ]
     ffills = [BG_LIGHT if i % 2 == 0 else BG_WHITE for i in range(len(frows))]
@@ -577,7 +577,7 @@ def create_report():
     footer_p = doc.add_paragraph()
     footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     fr = footer_p.add_run(
-        "Redrob Intelligent Candidate Discovery & Ranking Challenge  |  Team 204  |  June 2026"
+        "Redrob Intelligent Candidate Discovery & Ranking Challenge  |  Team Jarvis  |  June 2026"
     )
     fr.font.name = 'Calibri'
     fr.font.size = Pt(9)

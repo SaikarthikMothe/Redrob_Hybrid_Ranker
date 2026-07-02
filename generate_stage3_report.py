@@ -202,7 +202,7 @@ def create_report():
     sub_p.paragraph_format.space_after = Pt(2)
 
     meta_p = doc.add_paragraph()
-    meta_r = meta_p.add_run("Team 204  |  Output: team_204.csv  |  Status: VALIDATED ✓")
+    meta_r = meta_p.add_run("Team Jarvis  |  Output: team_Jarvis.csv  |  Status: VALIDATED ✓")
     meta_r.font.name = 'Calibri'
     meta_r.font.size = Pt(10)
     meta_r.font.color.rgb = SECONDARY
@@ -340,8 +340,8 @@ def create_report():
 
     # Load the current Top 5 so the report always reflects the latest submission.
     top5 = []
-    if os.path.exists("team_204.csv"):
-        with open("team_204.csv", encoding="utf-8-sig", newline="") as f:
+    if os.path.exists("team_Jarvis.csv"):
+        with open("team_Jarvis.csv", encoding="utf-8-sig", newline="") as f:
             rows = sorted(csv.DictReader(f), key=lambda row: int(row["rank"]))
         top5 = [
             (f'{row["candidate_id"]} (Rank {row["rank"]})', row["reasoning"])
@@ -371,7 +371,7 @@ def create_report():
     footer_p = doc.add_paragraph()
     footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     fr = footer_p.add_run(
-        "Redrob Intelligent Candidate Discovery & Ranking Challenge  |  Team 204  |  June 2026"
+        "Redrob Intelligent Candidate Discovery & Ranking Challenge  |  Team Jarvis  |  June 2026"
     )
     fr.font.name = 'Calibri'
     fr.font.size = Pt(9)

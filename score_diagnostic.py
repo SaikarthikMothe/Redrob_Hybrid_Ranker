@@ -186,9 +186,9 @@ print()
 
 # Show score distribution across top 10 in CSV
 import csv
-print("Top 10 from team_204.csv vs their cross-encoder scores:")
+print("Top 10 from team_Jarvis.csv vs their cross-encoder scores:")
 print(f"  {'Rank':<5} {'Candidate ID':<15} {'CSV Score':<12} {'Cross Score':<12} {'Cross Weight'}")
-with open('team_204.csv', 'r') as f:
+with open('team_Jarvis.csv', 'r') as f:
     reader = csv.DictReader(f)
     for i, row in enumerate(reader):
         if i >= 10: break
