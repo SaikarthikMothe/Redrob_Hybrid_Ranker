@@ -103,21 +103,3 @@ graph TD
    * **Explainable Shortlist:** Generates factual, hallucination-free, candidate-specific reasoning notes based on resume metadata.
 
 ---
-
-## Video Demo Recording Guide
-
-To create your screencast for the submission checklist:
-
-### 1. Preparation
-* Open your terminal or command prompt.
-* Open your repository folder containing the code.
-* Open the **Google Colab Sandbox** in a browser tab.
-
-### 2. What to Record (Duration: ~60–90 seconds)
-1. **Show the Sandbox (15s):** Start the recording showing the Colab sandbox badge. Scroll down to show the notebook structure.
-2. **Run the Code (30s):** Highlight Step 2 and Step 3. Click **Run All** or run the cells in sequence:
-   * Run the setup to clone/load the ranker.
-   * Run `python rank_candidates.py --candidates data/sample_candidates.jsonl --out sample_submission.csv`. Show the command outputting the audit metrics in the console.
-   * Run `python validate_submission.py sample_submission.csv` to show the validator outputting **`Submission is valid.`**
-3. **Show Explainability (20s):** Scroll to Step 4 and show the pandas table rendering the ranked shortlist. Highlight the `reasoning` column containing candidate facts (e.g. Swiggy experience, recruiter response rates, notice periods) to demonstrate **explainable rankings**.
-4. **End the Video (10s):** Show the `submission_metadata.yaml` file loaded, showing the team configuration.
